@@ -88,6 +88,8 @@ const shake2 = (id) => {
     }
 }
 
+
+
 /**
  * Fonction pour arrêter de secouer un élément en supprimant la classe shake
  * @param {*} element 
@@ -147,8 +149,22 @@ fetch("https://jsonplaceholder.typicode.com/users").then((response) => {
     }else {
         // Si la réponse est valide, retourner les données au format JSON
         return response.json();
+        // return [];
     }
 }).then((users) => {
+    console.log("Users",users);
+    if(users.length === 0) {
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.innerText = "Aucun utilisateur trouvé";
+        td.colSpan = 3;
+        tr.appendChild(td);
+        document.querySelector("tbody").appendChild(tr);
+    }
+
+
+
+
     // Une fois les données reçues, les afficher dans le tableau en créant une ligne par utilisateur
     users.forEach((user) => {
         // Créer les cellules correspondantes pour le nom, le nom d'utilisateur et l'email
